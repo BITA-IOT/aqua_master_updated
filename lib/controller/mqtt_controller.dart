@@ -290,10 +290,10 @@ class MqttController extends GetxController {
   //   }
   // }
   Future<void> connectToMqtt() async {
-    if (client == null) {
-      log("MQTT Client is not initialized!");
-      return;
-    }
+    // if (client == null) {
+    //   log("MQTT Client is not initialized!");
+    //   return;
+    // }
 
     try {
       log("Loading certificates...");
@@ -308,24 +308,24 @@ class MqttController extends GetxController {
       context.useCertificateChainBytes(deviceCert.buffer.asUint8List());
       context.usePrivateKeyBytes(privateKey.buffer.asUint8List());
 
-      client!.securityContext = context;
-      client!.connectionMessage = MqttConnectMessage()
+      client.securityContext = context;
+      client.connectionMessage = MqttConnectMessage()
           .withClientIdentifier(clientId.value)
           .startClean();
 
       log("Connecting to MQTT broker...");
-      await client!.connect();
+      await client.connect();
 
-      if (client!.connectionStatus!.state == MqttConnectionState.connected) {
+      if (client.connectionStatus!.state == MqttConnectionState.connected) {
         log('Connected to MQTT broker.');
         isConnected.value = true;
       } else {
-        log('Connection failed: ${client!.connectionStatus!.state}');
-        client!.disconnect();
+        log('Connection failed: ${client.connectionStatus!.state}');
+        client.disconnect();
       }
     } catch (e) {
       log('MQTT client exception: $e');
-      client?.disconnect();
+      client.disconnect();
     }
   }
 
