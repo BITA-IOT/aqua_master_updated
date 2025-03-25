@@ -175,6 +175,7 @@
 import 'dart:async';
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
+import 'package:aqua_master/views/azam.dart' show SettingScreen;
 import 'package:aqua_master/views/boiler_view.dart';
 import 'package:aqua_master/views/booster_view.dart';
 import 'package:aqua_master/views/comfort_view.dart';
@@ -277,25 +278,26 @@ class _ControlMasterPageState extends State<ControlMasterPage> {
                     right: 16.0 * Get.width / 375,
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 198, 198, 199),
-                        width: 3,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Container(
-                        color: const Color.fromARGB(255, 198, 198, 199),
-                        child: _buildRow(
-                          CoolerView(index: 0),
-                          BoilerView(index: 1),
-                          ComfortView(
-                            index: 2,
+                    color: const Color.fromARGB(255, 198, 198, 199),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            left: Get.width * 0.8,
+                            child: IconButton(
+                              onPressed: () {
+                                Get.to(() => SettingScreen());
+                              },
+                              icon: Icon(Icons.settings),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: _buildRow(
+                            CoolerView(index: 0),
+                            BoilerView(index: 1),
+                            ComfortView(index: 2),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

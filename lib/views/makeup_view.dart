@@ -1,6 +1,6 @@
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
-import 'package:aqua_master/views/Switch_card.dart';
+import 'package:aqua_master/views/switch_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +13,7 @@ class MakeUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SwitchCard(
+    return SwitchCardSetting(
       index: index,
       heading: "MakeUp",
       title: "",

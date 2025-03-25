@@ -17,14 +17,14 @@ class CoolerView extends StatelessWidget {
     return Obx(() {
       String temp1 = mqttController.receivedData['temp1']?.toString() ?? '--';
 
-      return SwitchCard(
+      return SwitchCardSetting(
         index: index,
         heading: "Cooler",
         title: "$temp1°C",
         icon: Icons.settings,
         controller: controller,
         click: () {
-          showTemperatureDialog(context, 'temp1');
+          // showTemperatureDialog(context, 'temp1');
         },
       );
     });

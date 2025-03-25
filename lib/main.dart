@@ -1,3 +1,4 @@
+import 'package:aqua_master/views/azam.dart';
 import 'package:aqua_master/views/controlscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

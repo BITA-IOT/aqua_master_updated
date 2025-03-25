@@ -1,7 +1,7 @@
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:aqua_master/dialog/setting_dialog.dart';
-import 'package:aqua_master/views/Switch_card.dart';
+import 'package:aqua_master/views/switch_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -18,7 +18,7 @@ class ComfortView extends StatelessWidget {
     return Obx(() {
       String temp3 = mqttController.receivedData['temp3']?.toString() ?? '--';
 
-      return SwitchCard(
+      return SwitchCardSetting(
         index: index,
         heading: "Comfort",
         title: "$temp3°C",
