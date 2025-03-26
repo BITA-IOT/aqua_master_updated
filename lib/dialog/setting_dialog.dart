@@ -182,6 +182,7 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
 
   late String setpointKey;
   late String appBarTitle;
+  late String temp;
 
   @override
   void initState() {
@@ -195,10 +196,10 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
         "coolersp";
 
     appBarTitle = setpointKey == "coolersp"
-        ? "Cooler SP"
+        ? "Cooler"
         : setpointKey == "boilersp"
-            ? "Boiler SP"
-            : "Comfort SP";
+            ? "Boiler"
+            : "Comfort";
 
     temperature = int.tryParse(
             mqttController.receivedData[setpointKey]?.toString() ?? "25") ??
@@ -224,6 +225,16 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
 
   @override
   Widget build(BuildContext context) {
+    String temp1 = mqttController.receivedData['temp1']?.toString() ?? '-- C';
+    String temp2 = mqttController.receivedData['temp2']?.toString() ?? '-- C';
+    String temp3 = mqttController.receivedData['temp3']?.toString() ?? '-- C';
+
+    temp = setpointKey == "coolersp"
+        ? temp1
+        : setpointKey == "boilersp"
+            ? temp2
+            : temp3;
+
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -256,8 +267,45 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
           backgroundColor: Colors.blueAccent,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Card(
+              color: const Color.fromARGB(255, 198, 198, 199),
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    color: Color.fromARGB(255, 198, 198, 199), width: 3),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(Get.width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(Get.width * 0.02),
+                          child: Text(
+                            "$appBarTitle Temperature",
+                            style: TextStyle(fontSize: Get.width * 0.04),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(Get.width * 0.02),
+                    child: Row(
+                      children: [
+                        Text(temp, style: TextStyle(fontSize: Get.width * 0.04))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: Get.height * 0.09),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
