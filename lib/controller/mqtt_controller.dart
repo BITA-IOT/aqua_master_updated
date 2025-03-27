@@ -270,6 +270,7 @@ class MqttController extends GetxController {
   void onInit() {
     super.onInit();
     connectToMqtt();
+    _setupMqttClient();
   }
 
   // Future<void> connectToMqtt() async {
@@ -334,6 +335,18 @@ class MqttController extends GetxController {
     isConnected.value = true;
     client.subscribe(topicReceive, MqttQos.atMostOnce);
     client.updates?.listen(_onMessageReceived);
+  }
+
+  void _setupMqttClient() {
+    client =
+        MqttServerClient.withPort(mqttBroker.value, clientId.value, port.value);
+    client.secure = true;
+    client.keepAlivePeriod = 60;
+    client.setProtocolV311();
+    client.logging(on: false);
+
+    client.onDisconnected = onDisconnected;
+    client.onConnected = onConnected;
   }
 
   void onDisconnected() {
