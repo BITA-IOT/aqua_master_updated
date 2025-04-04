@@ -1,11 +1,9 @@
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:aqua_master/dialog/setting_dialog.dart';
-import 'package:aqua_master/views/switch_card.dart';
 import 'package:aqua_master/views/switch_card_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class BoilerViewSetting extends StatelessWidget {
   final int index;
@@ -19,19 +17,20 @@ class BoilerViewSetting extends StatelessWidget {
     print("🔥 Updated MQTT Data: ${mqttController.receivedData}");
 
     return Obx(() {
-      String temp2 = mqttController.receivedData['temp2']?.toString() ?? '--';
+      String temp1 = mqttController.receivedData['temp1']?.toString() ?? '0';
 
       return SwitchCardSettingNew(
         index: index,
         heading: "Boiler",
-        title: "$temp2°C",
+        title: "$temp1°C",
         icon: Icons.settings,
         controller: controller,
         click: () {
-          showTemperatureDialog(context, 'temp2');
+          showTemperatureDialog(context, 'temp1');
 
           print("Boiler settings clicked");
         },
+        value: int.parse(temp1),
       );
     });
   }

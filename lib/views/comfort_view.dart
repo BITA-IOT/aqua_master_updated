@@ -16,16 +16,16 @@ class ComfortView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      String temp3 = mqttController.receivedData['temp3']?.toString() ?? '--';
+      String temp2 = mqttController.receivedData['temp2']?.toString() ?? '--';
 
       return SwitchCardSetting(
         index: index,
         heading: "Comfort",
-        title: "$temp3°C",
+        title: "$temp2°C",
         icon: Icons.settings,
         controller: controller,
         click: () {
-          showTemperatureDialog(context, 'temp3');
+          showTemperatureDialog(context, 'temp2');
           print("comfort settings clicked");
         },
       );

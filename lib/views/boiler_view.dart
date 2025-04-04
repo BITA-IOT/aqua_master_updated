@@ -18,16 +18,16 @@ class BoilerView extends StatelessWidget {
     print("🔥 Updated MQTT Data: ${mqttController.receivedData}");
 
     return Obx(() {
-      String temp2 = mqttController.receivedData['temp2']?.toString() ?? '--';
+      String temp1 = mqttController.receivedData['temp1']?.toString() ?? '--';
 
       return SwitchCardSetting(
         index: index,
         heading: "Boiler",
-        title: "$temp2°C",
+        title: "$temp1°C",
         icon: Icons.settings,
         controller: controller,
         click: () {
-          showTemperatureDialog(context, 'temp2');
+          showTemperatureDialog(context, 'temp1');
 
           print("Boiler settings clicked");
         },

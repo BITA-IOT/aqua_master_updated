@@ -1,6 +1,5 @@
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
-import 'package:aqua_master/dialog/setting_dialog.dart';
 import 'package:aqua_master/views/Switch_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

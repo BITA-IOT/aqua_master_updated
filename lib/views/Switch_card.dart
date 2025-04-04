@@ -1,7 +1,6 @@
 import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SwitchCardSetting extends StatelessWidget {
   final int index;
@@ -25,14 +24,14 @@ class SwitchCardSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double progressValue = 0.0;
-    if (title != null) {
-      int titleValue = int.tryParse(title!) ?? 10;
+    // double progressValue = 0.0;
+    // if (title != null) {
+    //   int titleValue = int.tryParse(title!) ?? 10;
 
-      titleValue = titleValue.clamp(10, 35);
+    //   titleValue = titleValue.clamp(10, 35);
 
-      progressValue = (titleValue - 10) / (35 - 10);
-    }
+    //   progressValue = (titleValue - 10) / (35 - 10);
+    // }
 
     return Center(
       child: Stack(
@@ -56,7 +55,7 @@ class SwitchCardSetting extends StatelessWidget {
                   Text(
                     heading!,
                     style: TextStyle(
-                      fontSize: 18 * Get.textScaleFactor,
+                      fontSize: 17 * Get.textScaleFactor,
                       color: Colors.black,
                     ),
                   ),
@@ -89,7 +88,7 @@ class SwitchCardSetting extends StatelessWidget {
                     Text(
                       title!,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 17,
                         color: Colors.black,
                       ),
                     ),

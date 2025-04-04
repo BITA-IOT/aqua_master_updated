@@ -1,11 +1,9 @@
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:aqua_master/dialog/setting_dialog.dart';
-import 'package:aqua_master/views/switch_card.dart';
 import 'package:aqua_master/views/switch_card_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ComfortViewSetting extends StatelessWidget {
   final int index;
@@ -17,16 +15,17 @@ class ComfortViewSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      String temp3 = mqttController.receivedData['temp3']?.toString() ?? '--';
+      String temp2 = mqttController.receivedData['temp2']?.toString() ?? '0';
 
       return SwitchCardSettingNew(
+        value: int.parse(temp2),
         index: index,
         heading: "Comfort",
-        title: "$temp3°C",
+        title: "$temp2°C",
         icon: Icons.settings,
         controller: controller,
         click: () {
-          showTemperatureDialog(context, 'temp3');
+          showTemperatureDialog(context, 'temp2');
           print("comfort settings clicked");
         },
       );

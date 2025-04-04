@@ -11,6 +11,7 @@ class SwitchCardSettingNew extends StatelessWidget {
   final IconData? icon;
   final SwitchCardController controller;
   final VoidCallback? click;
+  final int value;
 
   const SwitchCardSettingNew({
     Key? key,
@@ -21,6 +22,7 @@ class SwitchCardSettingNew extends StatelessWidget {
     this.icon,
     required this.controller,
     required this.click,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -68,10 +70,11 @@ class SwitchCardSettingNew extends StatelessWidget {
                       height: Get.width * 0.12,
                       width: Get.width * 0.12,
                       child: CircularProgressIndicator(
-                        value: progressValue,
+                        value: value.toDouble() / 100,
                         strokeWidth: 5,
                         backgroundColor: Colors.grey[300],
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            const Color.fromARGB(255, 104, 196, 233)),
                       ),
                     ),
                     Text(

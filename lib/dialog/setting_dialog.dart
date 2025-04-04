@@ -227,13 +227,13 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
   Widget build(BuildContext context) {
     String temp1 = mqttController.receivedData['temp1']?.toString() ?? '-- C';
     String temp2 = mqttController.receivedData['temp2']?.toString() ?? '-- C';
-    String temp3 = mqttController.receivedData['temp3']?.toString() ?? '-- C';
+    // String temp3 = mqttController.receivedData['temp3']?.toString() ?? '-- C';
 
     temp = setpointKey == "coolersp"
         ? temp1
         : setpointKey == "boilersp"
-            ? temp2
-            : temp3;
+            ? temp1
+            : temp2;
 
     return Scaffold(
         appBar: AppBar(
@@ -268,41 +268,49 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
         ),
         body: Column(
           children: [
-            Card(
-              color: const Color.fromARGB(255, 198, 198, 199),
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                    color: Color.fromARGB(255, 198, 198, 199), width: 3),
-                borderRadius: BorderRadius.circular(15),
+            Padding(
+              padding: EdgeInsets.only(
+                left: Get.width * 0.02,
+                right: Get.width * 0.02,
+                top: Get.height * 0.01,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(Get.width * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(Get.width * 0.02),
-                          child: Text(
-                            "$appBarTitle Temperature",
-                            style: TextStyle(fontSize: Get.width * 0.04),
+              child: Card(
+                color: const Color.fromARGB(255, 198, 198, 199),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(
+                      color: Color.fromARGB(255, 198, 198, 199), width: 3),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(Get.width * 0.02),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(Get.width * 0.025),
+                            child: Text(
+                              "$appBarTitle Temperature",
+                              style: TextStyle(fontSize: Get.width * 0.04),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(Get.width * 0.02),
-                    child: Row(
-                      children: [
-                        Text(temp, style: TextStyle(fontSize: Get.width * 0.04))
-                      ],
-                    ),
-                  )
-                ],
+                    Padding(
+                      padding: EdgeInsets.all(Get.width * 0.04),
+                      child: Row(
+                        children: [
+                          Text("$temp °C",
+                              style: TextStyle(fontSize: Get.width * 0.04))
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(height: Get.height * 0.09),
@@ -347,7 +355,7 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
                                             dotColor: Colors.blue,
                                           ),
                                         ),
-                                        min: 10,
+                                        min: 0,
                                         max: 35,
                                         initialValue: temperature.toDouble(),
                                         onChange: (double value) {

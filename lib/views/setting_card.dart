@@ -89,44 +89,40 @@ class _SettingScreenState extends State<SettingScreen> {
                     children: [
                       GestureDetector(
                         onTap: () => showTemperatureDialog(context, 'temp1'),
-                        child: Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.blueAccent,
-                                width: 5,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blueAccent,
+                              width: 5,
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  right: Get.width * 0.092,
-                                  left: Get.width * 0.092),
-                              child: CoolerViewSetting(index: 0),
-                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                right: Get.width * 0.092,
+                                left: Get.width * 0.092),
+                            child: CoolerViewSetting(index: 0),
                           ),
                         ),
                       ),
                       SizedBox(
-                        width: Get.width * 0.08,
+                        width: Get.width * 0.07,
                       ),
                       GestureDetector(
-                        onTap: () => showTemperatureDialog(context, 'temp2'),
-                        child: Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.blueAccent,
-                                width: 5,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
+                        onTap: () => showTemperatureDialog(context, 'temp1'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blueAccent,
+                              width: 5,
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  right: Get.width * 0.092,
-                                  left: Get.width * 0.092),
-                              child: BoilerViewSetting(index: 1),
-                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                right: Get.width * 0.092,
+                                left: Get.width * 0.092),
+                            child: BoilerViewSetting(index: 1),
                           ),
                         ),
                       ),
@@ -142,22 +138,20 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () => showTemperatureDialog(context, 'temp3'),
-                        child: Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.blueAccent,
-                                width: 5,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
+                        onTap: () => showTemperatureDialog(context, 'temp2'),l
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blueAccent,
+                              width: 5,
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  right: Get.width * 0.092,
-                                  left: Get.width * 0.092),
-                              child: ComfortViewSetting(index: 2),
-                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                right: Get.width * 0.092,
+                                left: Get.width * 0.092),
+                            child: ComfortViewSetting(index: 2),
                           ),
                         ),
                       ),
