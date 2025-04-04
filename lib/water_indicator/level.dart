@@ -12,17 +12,6 @@ class WaterLevelContainer extends StatelessWidget {
       width: Get.width * 0.85,
       height: Get.height * 0.26,
       padding: EdgeInsets.all(Get.width * 0.05),
-      // decoration: BoxDecoration(
-      //     // color: Colors.white,
-      //     //   borderRadius: BorderRadius.circular(15),
-      //     //   boxShadow: const [
-      //     //     BoxShadow(
-      //     //       color: Colors.black26,
-      //     //       blurRadius: 15,
-      //     //       offset: Offset(0, 6),
-      //     //     ),
-      //     //   ],
-      //     ),
       child: Stack(
         children: [
           Positioned(

@@ -1,7 +1,6 @@
 import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SwitchCardSettingNew extends StatelessWidget {
   final int index;
@@ -39,15 +38,6 @@ class SwitchCardSettingNew extends StatelessWidget {
     return Center(
       child: Stack(
         children: [
-          // if (icon != null)
-          //   Positioned(
-          //     top: -10,
-          //     right: -14,
-          //     child: IconButton(
-          //       onPressed: click,
-          //       icon: Icon(icon),
-          //     ),
-          //   ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

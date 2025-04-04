@@ -138,7 +138,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () => showTemperatureDialog(context, 'temp2'),l
+                        onTap: () => showTemperatureDialog(context, 'temp2'),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(
