@@ -19,7 +19,7 @@ class CoolerViewSetting extends StatelessWidget {
       return SwitchCardSettingNew(
         value: int.parse(temp1),
         index: index,
-        heading: "Cooler",
+        heading: "  Cooler",
         title: "$temp1°C",
         icon: Icons.settings,
         controller: controller,

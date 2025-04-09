@@ -65,7 +65,7 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
               height: 150,
               decoration: BoxDecoration(
                 color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(0),
                 border: Border.all(color: Colors.black26, width: 2),
               ),
               child: Align(
@@ -77,7 +77,7 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
                   decoration: const BoxDecoration(
                     color: Colors.blue,
                     borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(5)),
+                        BorderRadius.vertical(bottom: Radius.circular(0)),
                   ),
                 ),
               ),

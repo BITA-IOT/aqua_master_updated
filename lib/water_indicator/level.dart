@@ -8,18 +8,20 @@ class WaterLevelContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
-      width: Get.width * 0.85,
-      height: Get.height * 0.26,
-      padding: EdgeInsets.all(Get.width * 0.05),
+      width: width * 0.85,
+      height: height * 0.26,
+      padding: EdgeInsets.all(width * 0.05),
       child: Stack(
         children: [
           Positioned(
-            top: Get.height * 0.013,
-            left: Get.width * 0.05,
+            top: height * 0.013,
+            left: width * 0.05,
             child: Container(
-              width: Get.width * 0.27,
-              height: Get.width * 0.27,
+              width: width * 0.25,
+              height: width * 0.25,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/pump.png'),
@@ -29,16 +31,22 @@ class WaterLevelContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: Get.width * 0.24,
-            top: Get.height * 0.02,
+            right: width * 0.24,
+            top: height * 0.02,
             child: Container(
-              height: Get.height * 0.16,
+              height: height * 0.16,
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("HI-", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("MID-", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("LOW-", style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text("HI-",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
+                  Text("MID-",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
+                  Text("LOW-",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
                 ],
               ),
             ),
@@ -46,14 +54,14 @@ class WaterLevelContainer extends StatelessWidget {
           WaterTank(),
           Positioned(
             bottom: 1,
-            left: Get.width * 0.03,
-            top: Get.width * 0.31,
+            left: width * 0.01,
+            top: width * 0.28,
             child: Text(
               "WATER LEVEL",
               style: TextStyle(
                 fontSize: 18 * Get.textScaleFactor,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ),

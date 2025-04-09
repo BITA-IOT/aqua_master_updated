@@ -12,7 +12,8 @@ class SwitchCardController extends GetxController {
     'comfortersw',
     'boostersw',
     'makeupsw',
-    'crculatonsw'
+    'crculatonsw',
+    'seasonsw'
   ];
 
   final List<String> stateKeys = [
@@ -21,7 +22,8 @@ class SwitchCardController extends GetxController {
     'comforterstate',
     'boosterstate',
     'makeupstate',
-    'crculatonstate'
+    'crculatonsw',
+    'seasonsw'
   ];
 
   @override

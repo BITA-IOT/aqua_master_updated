@@ -6,6 +6,7 @@ class SwitchCardSetting extends StatelessWidget {
   final int index;
   final String? heading;
   final String? title;
+  final String? setpoint;
   final String? titlemain;
   final IconData? icon;
   final SwitchCardController controller;
@@ -20,6 +21,7 @@ class SwitchCardSetting extends StatelessWidget {
     this.icon,
     required this.controller,
     required this.click,
+    this.setpoint,
   }) : super(key: key);
 
   @override
@@ -32,16 +34,16 @@ class SwitchCardSetting extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: Get.height * 0.018),
+                SizedBox(height: Get.height * 0.015),
                 if (heading != null) ...[
                   Text(
                     heading!,
                     style: TextStyle(
                       fontSize: 17 * Get.textScaleFactor,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: Get.height * 0.018),
+                  SizedBox(height: Get.height * 0.015),
                 ],
                 if (title != null) ...[
                   Stack(alignment: Alignment.center, children: [
@@ -49,12 +51,24 @@ class SwitchCardSetting extends StatelessWidget {
                       title!,
                       style: TextStyle(
                         fontSize: 17,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                   ])
                 ],
-                SizedBox(height: Get.height * 0.016),
+                SizedBox(height: Get.height * 0.015),
+                if (setpoint != null) ...[
+                  Stack(alignment: Alignment.center, children: [
+                    Text(
+                      setpoint!,
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ])
+                ],
+                SizedBox(height: Get.height * 0.015),
                 Obx(() => Text(
                       controller.switchCards[index].actualState ? 'On' : 'Off',
                       style: TextStyle(
@@ -65,8 +79,8 @@ class SwitchCardSetting extends StatelessWidget {
                       ),
                     )),
                 SizedBox(
-                  height: Get.height * 0.04,
-                )
+                  height: Get.height * 0.001,
+                ),
               ],
             ),
           ),

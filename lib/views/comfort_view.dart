@@ -17,12 +17,15 @@ class ComfortView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       String temp2 = mqttController.receivedData['temp2']?.toString() ?? '--';
+      String coolersp =
+          mqttController.receivedData['comfortersp']?.toString() ?? '--';
 
       return SwitchCardSetting(
         index: index,
         heading: "Comfort",
         title: "$temp2°C",
         icon: Icons.settings,
+        setpoint: "$coolersp SP",
         controller: controller,
         click: () {
           showTemperatureDialog(context, 'temp2');

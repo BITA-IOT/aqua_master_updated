@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:aqua_master/controller/mqtt_controller.dart';
 import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:aqua_master/views/Switch_card.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CoolerView extends StatelessWidget {
   final int index;
@@ -15,16 +15,17 @@ class CoolerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       String temp1 = mqttController.receivedData['temp1']?.toString() ?? '--';
+      String coolersp =
+          mqttController.receivedData['coolersp']?.toString() ?? '--';
 
       return SwitchCardSetting(
         index: index,
         heading: "Cooler",
         title: "$temp1°C",
+        setpoint: "$coolersp SP",
         icon: Icons.settings,
         controller: controller,
-        click: () {
-          // showTemperatureDialog(context, 'temp1');
-        },
+        click: () {},
       );
     });
   }

@@ -209,7 +209,10 @@ class _ControlMasterPageState extends State<ControlMasterPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,7 +240,7 @@ class _ControlMasterPageState extends State<ControlMasterPage> {
             ),
           ],
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: GetBuilder<SwitchCardController>(
@@ -280,42 +283,40 @@ class _ControlMasterPageState extends State<ControlMasterPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: const Color.fromARGB(255, 198, 198, 199),
+                        color: Color(0xFF202020),
                         width: 4,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Container(
-                        color: const Color.fromARGB(255, 198, 198, 199),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                                left: Get.width * 0.79,
-                                top: Get.height * -0.01,
-                                child: IconButton(
-                                  onPressed: () {
-                                    Get.to(() => SettingScreen());
-                                  },
-                                  icon: Icon(Icons.settings),
-                                )),
-                            Padding(
-                              padding: EdgeInsets.only(right: Get.width * 0.04),
-                              child: _buildRow(
-                                CoolerView(index: 0),
-                                BoilerView(index: 1),
-                                ComfortView(index: 2),
-                              ),
+                    child: Container(
+                      color: Color(0xFF202020),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                              left: width * 0.80,
+                              top: height * -0.01,
+                              child: IconButton(
+                                color: Colors.white,
+                                onPressed: () {
+                                  Get.to(() => SettingScreen());
+                                },
+                                icon: Icon(Icons.settings),
+                              )),
+                          Padding(
+                            padding: EdgeInsets.only(right: width * 0.04),
+                            child: _buildRow(
+                              CoolerView(index: 0),
+                              BoilerView(index: 1),
+                              ComfortView(index: 2),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: Get.height * 0.025,
+                  height: height * 0.025,
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -325,23 +326,15 @@ class _ControlMasterPageState extends State<ControlMasterPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: const Color.fromARGB(255, 198, 198, 199),
+                        color: Color(0xFF202020),
                         width: 4,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(1),
-                      child: Container(
-                        color: const Color.fromARGB(255, 198, 198, 199),
-                        child: _buildRow(
-                          BoosterView(index: 3),
-                          MakeUpView(index: 4),
-                          RecirculationView(
-                            index: 5,
-                          ),
-                        ),
-                      ),
+                    child: Container(
+                      color: Color(0xFF202020),
+                      child: _buildRow(BoosterView(index: 3),
+                          MakeUpView(index: 4), RecirculationView(index: 5)),
                     ),
                   ),
                 ),

@@ -2,7 +2,7 @@ import 'package:aqua_master/controller/switch_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SwitchCardSettingNew extends StatelessWidget {
+class SwitchCardSecond extends StatelessWidget {
   final int index;
   final String? heading;
   final String? title;
@@ -10,9 +10,8 @@ class SwitchCardSettingNew extends StatelessWidget {
   final IconData? icon;
   final SwitchCardController controller;
   final VoidCallback? click;
-  final int value;
 
-  const SwitchCardSettingNew({
+  const SwitchCardSecond({
     Key? key,
     required this.index,
     this.heading,
@@ -21,20 +20,10 @@ class SwitchCardSettingNew extends StatelessWidget {
     this.icon,
     required this.controller,
     required this.click,
-    required this.value,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double progressValue = 0.0;
-    if (title != null) {
-      int titleValue = int.tryParse(title!) ?? 10;
-
-      titleValue = titleValue.clamp(10, 35);
-
-      progressValue = (titleValue - 10) / (35 - 10);
-    }
-
     return Center(
       child: Stack(
         children: [
@@ -48,7 +37,7 @@ class SwitchCardSettingNew extends StatelessWidget {
                   Text(
                     heading!,
                     style: TextStyle(
-                      fontSize: 18 * Get.textScaleFactor,
+                      fontSize: 17 * Get.textScaleFactor,
                       color: Colors.white,
                     ),
                   ),
@@ -56,22 +45,10 @@ class SwitchCardSettingNew extends StatelessWidget {
                 ],
                 if (title != null) ...[
                   Stack(alignment: Alignment.center, children: [
-                    SizedBox(
-                      height: Get.width * 0.12,
-                      width: Get.width * 0.12,
-                      child: CircularProgressIndicator(
-                        value: value.toDouble() / 100,
-                        strokeWidth: 5,
-                        backgroundColor: Colors.grey[300],
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            const Color.fromARGB(255, 104, 196, 233)),
-                      ),
-                    ),
                     Text(
                       title!,
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
                         color: Colors.white,
                       ),
                     ),
@@ -87,6 +64,9 @@ class SwitchCardSettingNew extends StatelessWidget {
                             : Colors.red,
                       ),
                     )),
+                SizedBox(
+                  height: Get.height * 0.001,
+                ),
                 Obx(() => Padding(
                       padding: EdgeInsets.all(Get.width * 0.009),
                       child: Switch(
@@ -95,10 +75,7 @@ class SwitchCardSettingNew extends StatelessWidget {
                         activeColor: Colors.blue,
                         inactiveThumbColor: Colors.red,
                       ),
-                    )),
-                SizedBox(
-                  height: Get.height * 0.02,
-                )
+                    ))
               ],
             ),
           ),

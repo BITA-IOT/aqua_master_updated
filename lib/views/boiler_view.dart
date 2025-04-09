@@ -19,11 +19,14 @@ class BoilerView extends StatelessWidget {
 
     return Obx(() {
       String temp1 = mqttController.receivedData['temp1']?.toString() ?? '--';
+      String coolersp =
+          mqttController.receivedData['boilersp']?.toString() ?? '--';
 
       return SwitchCardSetting(
         index: index,
         heading: "Boiler",
         title: "$temp1°C",
+        setpoint: "$coolersp SP",
         icon: Icons.settings,
         controller: controller,
         click: () {

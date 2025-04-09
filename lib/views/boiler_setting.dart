@@ -21,7 +21,7 @@ class BoilerViewSetting extends StatelessWidget {
 
       return SwitchCardSettingNew(
         index: index,
-        heading: "Boiler",
+        heading: "Boiler  ",
         title: "$temp1°C",
         icon: Icons.settings,
         controller: controller,
