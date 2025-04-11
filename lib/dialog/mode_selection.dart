@@ -14,7 +14,7 @@ class ModeDialog extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white.withOpacity(0.2),
@@ -53,11 +53,11 @@ class ModeDialog extends StatelessWidget {
             child: GestureDetector(
               onTap: () => Get.back(),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                padding: EdgeInsets.all(8),
-                child: Icon(Icons.close, color: Colors.white, size: 24),
+                padding: const EdgeInsets.all(8),
+                child: const Icon(Icons.close, color: Colors.white, size: 24),
               ),
             ),
           ),

@@ -26,13 +26,13 @@ class SwitchCardSettingNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double progressValue = 0.0;
+    // double progressValue = 0.0;
     if (title != null) {
       int titleValue = int.tryParse(title!) ?? 10;
 
       titleValue = titleValue.clamp(10, 35);
 
-      progressValue = (titleValue - 10) / (35 - 10);
+      // progressValue = (titleValue - 10) / (35 - 10);
     }
 
     return Center(
@@ -63,13 +63,13 @@ class SwitchCardSettingNew extends StatelessWidget {
                         value: value.toDouble() / 100,
                         strokeWidth: 5,
                         backgroundColor: Colors.grey[300],
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            const Color.fromARGB(255, 104, 196, 233)),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                            Color.fromARGB(255, 104, 196, 233)),
                       ),
                     ),
                     Text(
                       title!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

@@ -45,7 +45,6 @@ class SeasonSwitchCard extends StatelessWidget {
     double padding = screenWidth < 350 ? 5 : 6;
 
     return Obx(() {
-      // Determine season mode based on the switch value
       String modeText =
           controller.switchCards[6].status ? "Winter Mode" : "Summer Mode";
 

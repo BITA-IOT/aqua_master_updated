@@ -112,7 +112,7 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
                   top: Get.height * 0.01,
                 ),
                 child: Card(
-                  color: Color(0xFF202020),
+                  color: const Color(0xFF202020),
                   elevation: 5,
                   shape: RoundedRectangleBorder(
                     side: const BorderSide(width: 3),
@@ -162,7 +162,7 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
                   top: Get.height * 0.001,
                 ),
                 child: Card(
-                  color: Color(0xFF202020),
+                  color: const Color(0xFF202020),
                   elevation: 5,
                   shape: RoundedRectangleBorder(
                     side: const BorderSide(width: 3),
@@ -382,7 +382,6 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
                                 ],
                               ),
                             ),
-                            // The switch is shown here dynamically based on `switchIndex`
                           ])),
                     )
                   ]),
@@ -395,14 +394,13 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
 }
 
 void showTemperatureDialog(BuildContext context, String tempKey) {
-  // Determine the switch index based on the `tempKey`
   int switchIndex = tempKey == "temp1" ? 0 : (tempKey == "temp2" ? 1 : 2);
 
   showDialog(
     context: context,
     builder: (context) => TemperatureDialog(
       tempKey: tempKey,
-      switchIndex: switchIndex, // Passing the correct index
+      switchIndex: switchIndex, 
     ),
     useSafeArea: false,
   );
