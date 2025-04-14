@@ -12,7 +12,7 @@ class CardView extends StatelessWidget {
       onTap: () => onTap(),
       child: Card(
         elevation: 8,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -30,7 +30,7 @@ class CardView extends StatelessWidget {
             children: [
               Text(
                 cardModel.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,

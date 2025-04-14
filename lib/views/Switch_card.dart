@@ -13,7 +13,7 @@ class SwitchCardSetting extends StatelessWidget {
   final VoidCallback? click;
 
   const SwitchCardSetting({
-    Key? key,
+    super.key,
     required this.index,
     this.heading,
     this.title,
@@ -22,7 +22,7 @@ class SwitchCardSetting extends StatelessWidget {
     required this.controller,
     required this.click,
     this.setpoint,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class SwitchCardSetting extends StatelessWidget {
                   Stack(alignment: Alignment.center, children: [
                     Text(
                       title!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17,
                         color: Colors.white,
                       ),
@@ -61,7 +61,7 @@ class SwitchCardSetting extends StatelessWidget {
                   Stack(alignment: Alignment.center, children: [
                     Text(
                       setpoint!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17,
                         color: Colors.white,
                       ),

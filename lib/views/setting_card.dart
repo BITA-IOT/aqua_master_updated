@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class SettingScreen extends StatefulWidget {
+  const SettingScreen({super.key});
+
   @override
   _SettingScreenState createState() => _SettingScreenState();
 }
@@ -21,7 +23,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     super.initState();
-    _timeStream = Stream.periodic(Duration(seconds: 1), (_) {
+    _timeStream = Stream.periodic(const Duration(seconds: 1), (_) {
       return DateFormat('EEEE').format(DateTime.now()) +
           '\n' +
           DateFormat('hh:mm:ss a').format(DateTime.now());
@@ -38,30 +40,30 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text("Settings", style: TextStyle(color: Colors.white)),
-            StreamBuilder<String>(
-              stream: _timeStream,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) return const SizedBox.shrink();
+            // StreamBuilder<String>(
+            //   stream: _timeStream,
+            //   builder: (context, snapshot) {
+            //     if (!snapshot.hasData) return const SizedBox.shrink();
 
-                List<String> parts = snapshot.data!.split('\n');
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      parts[0],
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      parts[1],
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                  ],
-                );
-              },
-            ),
+            //     List<String> parts = snapshot.data!.split('\n');
+            //     return Column(
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         Text(
+            //           parts[0],
+            //           style: const TextStyle(
+            //               color: Colors.white,
+            //               fontSize: 14,
+            //               fontWeight: FontWeight.bold),
+            //         ),
+            //         Text(
+            //           parts[1],
+            //           style: const TextStyle(color: Colors.white, fontSize: 14),
+            //         ),
+            //       ],
+            //     );
+            //   },
+            // ),
           ],
         ),
         backgroundColor: Colors.black,
@@ -70,83 +72,81 @@ class _SettingScreenState extends State<SettingScreen> {
         child: GetBuilder<SwitchCardController>(
           init: SwitchCardController(),
           builder: (controller) {
-            return Container(
-              child: Padding(
-                padding: EdgeInsets.only(
-                    right: Get.width * 0.09,
-                    top: Get.height * 0.07,
-                    left: Get.width * 0.09),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () =>
-                                  showTemperatureDialog(context, 'temp1'),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF202020),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      right: Get.width * 0.099,
-                                      left: Get.width * 0.099),
-                                  child: CoolerViewSetting(index: 0),
-                                ),
+            return Padding(
+              padding: EdgeInsets.only(
+                  right: Get.width * 0.09,
+                  top: Get.height * 0.07,
+                  left: Get.width * 0.09),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () =>
+                                showTemperatureDialog(context, 'temp1'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF202020),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () =>
-                                  showTemperatureDialog(context, 'temp2'),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF202020),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      right: Get.width * 0.099,
-                                      left: Get.width * 0.099),
-                                  child: BoilerViewSetting(index: 1),
-                                ),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    right: Get.width * 0.099,
+                                    left: Get.width * 0.099),
+                                child: CoolerViewSetting(index: 0),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.04,
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => showTemperatureDialog(context, 'temp3'),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(0xFF202020),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  right: Get.width * 0.092,
-                                  left: Get.width * 0.092),
-                              child: ComfortViewSetting(index: 2),
                             ),
                           ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () =>
+                                showTemperatureDialog(context, 'temp2'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF202020),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    right: Get.width * 0.099,
+                                    left: Get.width * 0.099),
+                                child: BoilerViewSetting(index: 1),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.04,
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => showTemperatureDialog(context, 'temp3'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF202020),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                right: Get.width * 0.092,
+                                left: Get.width * 0.092),
+                            child: ComfortViewSetting(index: 2),
+                          ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             );
           },

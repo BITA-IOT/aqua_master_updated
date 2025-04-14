@@ -13,7 +13,7 @@ class SwitchCardSettingNew extends StatelessWidget {
   final int value;
 
   const SwitchCardSettingNew({
-    Key? key,
+    super.key,
     required this.index,
     this.heading,
     this.title,
@@ -22,17 +22,14 @@ class SwitchCardSettingNew extends StatelessWidget {
     required this.controller,
     required this.click,
     required this.value,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    // double progressValue = 0.0;
     if (title != null) {
       int titleValue = int.tryParse(title!) ?? 10;
 
       titleValue = titleValue.clamp(10, 35);
-
-      // progressValue = (titleValue - 10) / (35 - 10);
     }
 
     return Center(

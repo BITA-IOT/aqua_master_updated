@@ -11,7 +11,7 @@ class MqttController extends GetxController {
   RxString mqttBroker = 'a31qubhv0f0qec-ats.iot.eu-north-1.amazonaws.com'.obs;
 
   final RxInt port = 8883.obs;
-  final RxString clientId = "flutter_mqtt_client".obs;
+  final RxString clientId = "flutter_mqtt_client1212".obs;
   final String topicReceive = "/KRC/AM-AAA001";
   final String topicSend = "/test/AM-AAA001/1";
 
@@ -30,7 +30,7 @@ class MqttController extends GetxController {
   }
 
   void onConnected() {
-    print("✅ Connected to MQTT Broker!");
+    log("✅ Connected to MQTT Broker!");
     isConnected.value = true;
     client?.subscribe(topicReceive, MqttQos.atMostOnce);
     client?.updates?.listen(_onMessageReceived);
@@ -39,7 +39,7 @@ class MqttController extends GetxController {
   void _onDisconnected() {
     log("Disconnected from MQTT broker. Reconnecting...");
     isConnected.value = false;
-    Future.delayed(Duration(seconds: 5), _connectMqtt);
+    Future.delayed(const Duration(seconds: 5), _connectMqtt);
   }
 
   void _setupMqttClient() {
@@ -104,7 +104,7 @@ class MqttController extends GetxController {
         MqttPublishPayload.bytesToStringAsString(recMessage.payload.message);
 
     if (message.trim().isEmpty) {
-      print("⚠️ Received an empty MQTT message.");
+      log("⚠️ Received an empty MQTT message.");
       return;
     }
 
@@ -114,7 +114,7 @@ class MqttController extends GetxController {
       receivedData.value = data; // ✅ Update global state
 
       // Log received data
-      print("✅ Received MQTT Data: $data");
+      log("✅ Received MQTT Data: $data");
 
       // Get the switch controller instance
       final switchController = Get.find<SwitchCardController>();
@@ -152,15 +152,13 @@ class MqttController extends GetxController {
           }
         }
       }
-
-      // Refresh UI only if there were updates
       if (updated) {
         switchController.switchCards.refresh();
-        print("🚀 UI Updated with new switch states!");
+        log("🚀 UI Updated with new switch states!");
       }
     } catch (e) {
-      print("❌ Error processing MQTT message: $e");
-      print("📩 Raw message: $message");
+      log("❌ Error processing MQTT message: $e");
+      log("📩 Raw message: $message");
     }
   }
 
@@ -228,19 +226,19 @@ class MqttController extends GetxController {
 
     // Convert the data to a JSON string
     String jsonString = jsonEncode(jsonData);
-    print("📤 Sending MQTT Message: $jsonString");
+    log("📤 Sending MQTT Message: $jsonString");
 
     final builder = MqttClientPayloadBuilder();
     builder.addString(jsonString);
 
     if (builder.payload == null || builder.payload!.isEmpty) {
-      print("❌ MQTT Payload is empty! Message not sent.");
+      log("❌ MQTT Payload is empty! Message not sent.");
       return;
     }
 
     // Send the MQTT message
     client?.publishMessage(topicSend, MqttQos.atMostOnce, builder.payload!);
-    print("✅ MQTT Message Sent Successfully!");
+    log("✅ MQTT Message Sent Successfully!");
   }
 
   void selectSeason(bool bool) {}

@@ -47,7 +47,7 @@ class SwitchCardSecond extends StatelessWidget {
                   Stack(alignment: Alignment.center, children: [
                     Text(
                       title!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17,
                         color: Colors.white,
                       ),

@@ -38,30 +38,10 @@ class _ControlMasterPageState extends State<ControlMasterPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("AQUA MASTER", style: TextStyle(color: Colors.white)),
-            StreamBuilder<String>(
-              stream: _timeStream,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) return const SizedBox.shrink();
-                final parts = snapshot.data!.split('\n');
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(parts[0],
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold)),
-                    Text(parts[1],
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 14)),
-                  ],
-                );
-              },
-            ),
+            Text("AQUA MASTER", style: TextStyle(color: Colors.white)),
           ],
         ),
         backgroundColor: Colors.black,

@@ -4,7 +4,6 @@ import 'package:aqua_master/dialog/setting_dialog.dart';
 import 'package:aqua_master/views/switch_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ComfortView extends StatelessWidget {
   final int index;

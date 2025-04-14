@@ -74,321 +74,316 @@ class _TemperatureDialogState extends State<TemperatureDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(appBarTitle, style: const TextStyle(color: Colors.white)),
-              StreamBuilder<String>(
-                stream: Stream.periodic(const Duration(seconds: 1), (_) {
-                  return DateFormat('EEEE').format(DateTime.now()) +
-                      '\n' +
-                      DateFormat('hh:mm:ss a').format(DateTime.now());
-                }),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) return const SizedBox.shrink();
-                  final parts = snapshot.data!.split('\n');
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(parts[0],
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold)),
-                      Text(parts[1],
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 14)),
-                    ],
-                  );
-                },
-              ),
+              // StreamBuilder<String>(
+              //   stream: Stream.periodic(const Duration(seconds: 1), (_) {
+              //     return DateFormat('EEEE').format(DateTime.now()) +
+              //         '\n' +
+              //         DateFormat('hh:mm:ss a').format(DateTime.now());
+              //   }),
+              //   builder: (context, snapshot) {
+              //     if (!snapshot.hasData) return const SizedBox.shrink();
+              //     final parts = snapshot.data!.split('\n');
+              //     return Column(
+              //       crossAxisAlignment: CrossAxisAlignment.center,
+              //       children: [
+              //         Text(parts[0],
+              //             style: const TextStyle(
+              //                 color: Colors.white,
+              //                 fontSize: 14,
+              //                 fontWeight: FontWeight.bold)),
+              //         Text(parts[1],
+              //             style: const TextStyle(
+              //                 color: Colors.white, fontSize: 14)),
+              //       ],
+              //     );
+              //   },
+              // ),
             ],
           ),
           backgroundColor: Colors.black,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: Get.width * 0.02,
-                  right: Get.width * 0.02,
-                  top: Get.height * 0.01,
+        body: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: Get.width * 0.02,
+                right: Get.width * 0.02,
+                top: Get.height * 0.01,
+              ),
+              child: Card(
+                color: const Color(0xFF202020),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 3),
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                child: Card(
-                  color: const Color(0xFF202020),
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 3),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(Get.width * 0.02),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(Get.width * 0.025),
+                            child: Text(
+                              "$appBarTitle Temperature",
+                              style: TextStyle(
+                                  fontSize: Get.width * 0.04,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(
+                        Get.width * 0.05,
+                      ),
+                      child: Row(
+                        children: [
+                          Text("$temp °C",
+                              style: TextStyle(
+                                  fontSize: Get.width * 0.04,
+                                  color: Colors.white))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: Get.width * 0.02,
+                right: Get.width * 0.02,
+                top: Get.height * 0.001,
+              ),
+              child: Card(
+                color: const Color(0xFF202020),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 3),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: Get.width * 0.02,
+                      right: Get.width * 0.02,
+                      top: Get.height * 0.01,
+                      bottom: Get.height * 0.01),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.all(Get.width * 0.02),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(Get.width * 0.025),
-                              child: Text(
-                                "$appBarTitle Temperature",
-                                style: TextStyle(
-                                    fontSize: Get.width * 0.04,
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
+                      Row(
+                        children: [
+                          Obx(() => Padding(
+                                padding: EdgeInsets.all(Get.width * 0.009),
+                                child: Switch(
+                                  value: controller
+                                      .switchCards[widget.switchIndex].status,
+                                  onChanged: (value) {
+                                    controller.toggleSwitch(widget.switchIndex);
+                                  },
+                                  activeColor: Colors.blue,
+                                  inactiveThumbColor: Colors.red,
+                                ),
+                              )),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(
-                          Get.width * 0.05,
-                        ),
-                        child: Row(
-                          children: [
-                            Text("$temp °C",
-                                style: TextStyle(
-                                    fontSize: Get.width * 0.04,
-                                    color: Colors.white))
-                          ],
-                        ),
-                      ),
+                      Row(
+                        children: [
+                          Obx(() => Padding(
+                                padding:
+                                    EdgeInsets.only(right: Get.width * 0.05),
+                                child: Text(
+                                  controller.switchCards[widget.switchIndex]
+                                          .actualState
+                                      ? 'On'
+                                      : 'Off',
+                                  style: TextStyle(
+                                    fontSize: 18 * Get.textScaleFactor,
+                                    color: controller
+                                            .switchCards[widget.switchIndex]
+                                            .actualState
+                                        ? Colors.green
+                                        : Colors.red,
+                                  ),
+                                ),
+                              )),
+                        ],
+                      )
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: Get.width * 0.02,
-                  right: Get.width * 0.02,
-                  top: Get.height * 0.001,
-                ),
-                child: Card(
-                  color: const Color(0xFF202020),
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 3),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: Get.width * 0.02,
-                        right: Get.width * 0.02,
-                        top: Get.height * 0.01,
-                        bottom: Get.height * 0.01),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Obx(() => Padding(
-                                  padding: EdgeInsets.all(Get.width * 0.009),
-                                  child: Switch(
-                                    value: controller
-                                        .switchCards[widget.switchIndex].status,
-                                    onChanged: (value) {
-                                      controller
-                                          .toggleSwitch(widget.switchIndex);
-                                    },
-                                    activeColor: Colors.blue,
-                                    inactiveThumbColor: Colors.red,
+            ),
+            SizedBox(height: Get.height * 0.05),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(clipBehavior: Clip.none, children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child:
+                            Column(mainAxisSize: MainAxisSize.min, children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: Get.width * 0.03,
+                                    right: Get.width * 0.03),
+                                child: Center(
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      SleekCircularSlider(
+                                        appearance: CircularSliderAppearance(
+                                          size: Get.height * 0.32,
+                                          angleRange: 260,
+                                          startAngle: 140,
+                                          customWidths: CustomSliderWidths(
+                                            trackWidth: Get.width * 0.008,
+                                            progressBarWidth: Get.width * 0.010,
+                                            handlerSize: Get.width * 0.030,
+                                          ),
+                                          customColors: CustomSliderColors(
+                                            trackColor: Colors.grey[400]!,
+                                            progressBarColors: [
+                                              Colors.red,
+                                              Colors.green
+                                            ],
+                                            dotColor: Colors.green,
+                                          ),
+                                        ),
+                                        min: 0,
+                                        max: 35,
+                                        initialValue: temperature.toDouble(),
+                                        onChange: (double value) {
+                                          setState(() {
+                                            temperature = value.toInt();
+                                          });
+                                        },
+                                        onChangeEnd: (double value) {
+                                          updateTemperature(value.toInt());
+                                        },
+                                      ),
+                                      Container(
+                                        width: Get.width * 0.48,
+                                        height: Get.height * 0.35,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black26,
+                                              blurRadius: 20,
+                                              spreadRadius: 8,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: Get.height * 0.1,
+                                            ),
+                                            Icon(
+                                              Icons.circle,
+                                              size: 10,
+                                              color: mqttController
+                                                      .isConnected.value
+                                                  ? Colors.green
+                                                  : Colors.red,
+                                            ),
+                                            SizedBox(
+                                              height: Get.height * 0.025,
+                                            ),
+                                            SizedBox(
+                                              height: Get.height * 0.1,
+                                              child: Text("$temperature°C",
+                                                  key: ValueKey<int>(
+                                                      temperature),
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          Get.width * 0.09,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                )),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Obx(() => Padding(
-                                  padding:
-                                      EdgeInsets.only(right: Get.width * 0.05),
-                                  child: Text(
-                                    controller.switchCards[widget.switchIndex]
-                                            .actualState
-                                        ? 'On'
-                                        : 'Off',
-                                    style: TextStyle(
-                                      fontSize: 18 * Get.textScaleFactor,
-                                      color: controller
-                                              .switchCards[widget.switchIndex]
-                                              .actualState
-                                          ? Colors.green
-                                          : Colors.red,
-                                    ),
-                                  ),
-                                )),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: Get.height * 0.09),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(clipBehavior: Clip.none, children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                          child:
-                              Column(mainAxisSize: MainAxisSize.min, children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: Get.height * 0.05,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: Get.width * 0.03,
-                                      right: Get.width * 0.03),
-                                  child: Center(
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        SleekCircularSlider(
-                                          appearance: CircularSliderAppearance(
-                                            size: Get.height * 0.32,
-                                            angleRange: 260,
-                                            startAngle: 140,
-                                            customWidths: CustomSliderWidths(
-                                              trackWidth: Get.width * 0.008,
-                                              progressBarWidth:
-                                                  Get.width * 0.010,
-                                              handlerSize: Get.width * 0.030,
-                                            ),
-                                            customColors: CustomSliderColors(
-                                              trackColor: Colors.grey[400]!,
-                                              progressBarColors: [
-                                                Colors.red,
-                                                Colors.green
-                                              ],
-                                              dotColor: Colors.green,
-                                            ),
-                                          ),
-                                          min: 0,
-                                          max: 35,
-                                          initialValue: temperature.toDouble(),
-                                          onChange: (double value) {
-                                            setState(() {
-                                              temperature = value.toInt();
-                                            });
-                                          },
-                                          onChangeEnd: (double value) {
-                                            updateTemperature(value.toInt());
-                                          },
-                                        ),
-                                        Container(
-                                          width: Get.width * 0.48,
-                                          height: Get.height * 0.35,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.white,
-                                            shape: BoxShape.circle,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black26,
-                                                blurRadius: 20,
-                                                spreadRadius: 8,
-                                              ),
-                                            ],
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                height: Get.height * 0.1,
-                                              ),
-                                              Icon(
-                                                Icons.circle,
-                                                size: 10,
-                                                color: mqttController
-                                                        .isConnected.value
-                                                    ? Colors.green
-                                                    : Colors.red,
-                                              ),
-                                              SizedBox(
-                                                height: Get.height * 0.025,
-                                              ),
-                                              SizedBox(
-                                                height: Get.height * 0.1,
-                                                child: Text("$temperature°C",
-                                                    key: ValueKey<int>(
-                                                        temperature),
-                                                    style: TextStyle(
-                                                        fontSize:
-                                                            Get.width * 0.09,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black)),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
                                     ),
+                                    elevation: 3,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: Get.width * 0.14,
+                                        vertical: Get.height * 0.001),
+                                  ),
+                                  onPressed: () {
+                                    if (temperature > 10) {
+                                      updateTemperature(temperature - 1);
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.black,
+                                    size: Get.width * 0.06,
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    elevation: 3,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: Get.width * 0.14,
+                                        vertical: Get.height * 0.001),
+                                  ),
+                                  onPressed: () {
+                                    if (temperature < 35) {
+                                      updateTemperature(temperature + 1);
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.black,
+                                    size: Get.width * 0.06,
                                   ),
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: Get.height * 0.1,
-                                  bottom: Get.height * 0.15),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      elevation: 3,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: Get.width * 0.14,
-                                          vertical: Get.height * 0.001),
-                                    ),
-                                    onPressed: () {
-                                      if (temperature > 10) {
-                                        updateTemperature(temperature - 1);
-                                      }
-                                    },
-                                    child: Icon(
-                                      Icons.remove,
-                                      color: Colors.black,
-                                      size: Get.width * 0.06,
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      elevation: 3,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: Get.width * 0.14,
-                                          vertical: Get.height * 0.001),
-                                    ),
-                                    onPressed: () {
-                                      if (temperature < 35) {
-                                        updateTemperature(temperature + 1);
-                                      }
-                                    },
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.black,
-                                      size: Get.width * 0.06,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ])),
-                    )
-                  ]),
-                ],
-              ),
-            ],
-          ),
+                          ),
+                        ])),
+                  )
+                ]),
+              ],
+            ),
+          ],
         ));
   }
 }
@@ -400,7 +395,7 @@ void showTemperatureDialog(BuildContext context, String tempKey) {
     context: context,
     builder: (context) => TemperatureDialog(
       tempKey: tempKey,
-      switchIndex: switchIndex, 
+      switchIndex: switchIndex,
     ),
     useSafeArea: false,
   );

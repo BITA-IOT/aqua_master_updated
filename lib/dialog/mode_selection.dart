@@ -68,8 +68,8 @@ class ModeDialog extends StatelessWidget {
 
   Widget _modeOption(String mode) {
     return Obx(() => ListTile(
-          title:
-              Text(mode, style: TextStyle(color: Colors.white, fontSize: 18)),
+          title: Text(mode,
+              style: const TextStyle(color: Colors.white, fontSize: 18)),
           leading: Radio<String>(
             value: mode,
             groupValue: modeController.selectedMode.value,
